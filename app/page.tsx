@@ -6,7 +6,7 @@ import Papa from 'papaparse'
 import * as XLSX from 'xlsx'
 import { saveAs } from 'file-saver'
 
-type LogType = 'auto' | 'behavior' | 'gui' | 'npc_chat'
+type LogType = 'auto' | 'behavior' | 'gui' | 'npc_chat' | 'unknown'
 
 interface ParsedRow {
   [key: string]: string | number | null
@@ -95,7 +95,7 @@ export default function Home() {
         setColumns(cols)
         
         const detected = detectLogType(cols)
-        setLogType(detected !== 'unknown' ? detected : 'auto')
+        setLogType(detected)
         
         setStatus({
           type: 'success',
